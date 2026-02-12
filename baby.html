@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Long Distance Love</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+.section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    transition: 1s;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Glass effect */
+.box {
+    background: rgba(255,255,255,0.15);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 35px;
+}
+
+p {
+    max-width: 600px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.yes {
+    background: #ff4b5c;
+    color: white;
+}
+
+.yes:hover {
+    transform: scale(1.1);
+}
+
+.no {
+    background: #333;
+    color: white;
+    position: relative;
+}
+
+video {
+    width: 90%;
+    max-width: 700px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.back {
+    background: white;
+    color: #ff4b5c;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Proposal Section -->
+<div class="section" id="proposal">
+    <div class="box">
+        <h1>💖 Will You Be My Valentine? 💖</h1>
+
+        <p>
+            Even though we are miles apart,
+            my heart beats only for you.
+            Distance means nothing when someone means everything.
+            Will you stay with me and make this love forever?
+        </p>
+
+        <button class="yes" onclick="showMemories()">YES 💘</button>
+        <button class="no" onmouseover="moveNo()">NO 😢</button>
+    </div>
+</div>
+
+<!-- Memory Section -->
+<div class="section hidden" id="memories" style="background: linear-gradient(135deg, #141e30, #243b55);">
+
+    <div class="box">
+        <h1>🌍 Our Long Distance Memories 💖</h1>
+
+        <p>
+            No matter the distance between UK and home,
+            these memories remind me that our love is stronger than miles.
+            Every video call, every laugh, every moment — I treasure it all.
+        </p>
+
+        <!-- Replace video.mp4 with your video -->
+        <video controls autoplay>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+
+        <br>
+        <button class="back" onclick="goBack()">Go Back 💌</button>
+    </div>
+</div>
+
+<!-- Background Music (Replace music.mp3 if you want) -->
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* Show Memory Page */
+function showMemories() {
+    document.getElementById("proposal").classList.add("hidden");
+    document.getElementById("memories").classList.remove("hidden");
+
+    // Play music when YES is clicked
+    document.getElementById("bgMusic").play();
+}
+
+/* Back Button */
+function goBack() {
+    document.getElementById("memories").classList.add("hidden");
+    document.getElementById("proposal").classList.remove("hidden");
+}
+
+/* Running NO Button */
+function moveNo() {
+    const button = document.querySelector(".no");
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+/* Floating Hearts */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
+
+</script>
+
+</body>
+</html>
+
+
